@@ -2,15 +2,20 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Login from '../components/Login.vue'
 import Home from '../components/Home.vue'
-
-// const originalPush = VueRouter.prototype.push
-// VueRouter.prototype.push = function push(location, onResolve, onReject) {
-//   console.log(location);
-//   if (onResolve || onReject) {
-//     return originalPush.call(this, location, onResolve, onReject)
-//   }
-//   return originalPush.call(this, location).catch(err => err)
-// }
+import Test from '../components/Test.vue'
+import Welcome from '../components/Welcome.vue'
+//用户管理
+import Users from '../components/user/Users.vue'
+//权限管理
+import Roles from '../components/home/Roles.vue'
+import Rights from '../components/home/Rights.vue'
+//商品管理
+import Goods from '../components/home/Goods.vue'
+import Params from '../components/home/Params.vue'
+import Categories from '../components/home/Categories.vue'
+//
+import Orders from '../components/home/Orders.vue'
+import Reports from '../components/home/Reports.vue'
 
 //路由文件
 Vue.use(VueRouter)
@@ -18,12 +23,33 @@ Vue.use(VueRouter)
 const routes = [
   { path: '/',redirect: 'login'},
   { path: '/login',component: Login}, //当访问的/login时候，展示login组件
-  { path: '/home',component: Home},
+  { path: '/home',
+    component: Home,
+    redirect:'/welcome', //一访问home首页，立即跳转至welcome首页
+    children:[ //home中子路由相关组件，用于显示home.vue中的主体区域的 router-view路由占位符
+      { path: '/welcome',component: Welcome},
+      //用户管理
+      { path: '/users',component: Users}, 
+      //权限管理
+      { path: '/roles',component: Roles},
+      { path: '/rights',component: Rights},
+      //商品管理
+      { path: '/goods',component: Goods},
+      { path: '/params',component: Params},
+      { path: '/categories',component: Categories},
+
+      { path: '/orders',component: Orders},
+      { path: '/reports',component: Reports},
+    ]
+  },
+  
+  { path: '/test',component: Test},
 ]
 
 const router = new VueRouter({
   routes
 })
+
 //路由导航守卫，用于控制访问权限
 //callback(), to：表示将于访问的路径，from：从那个页面而来的，next()放行函数
 router.beforeEach((to,from,next) => {

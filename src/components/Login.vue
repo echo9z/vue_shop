@@ -2,11 +2,12 @@
     <div class="login_container" >
         <div class="login_box"><!-- 登录框的盒子 -->
             <div class="avatar_box"> <!-- 渲染头像 -->
-                <img src="../assets/logo.png" alt="">
+                <img src="../assets/images/logo.png" alt="">
             </div>
             <!-- 登录表单区域 -->
             <!-- 表单属性绑定，通过 :model="属性" 进行属性的绑定，值是一个数据对象 -->
             <!-- 表单数据校验，通过 :rules='rules' 进行属性的绑定，值是一个数据对象，item项通过prop="username"添加验证 -->
+            <!-- ref="loginFormRef" 通过 vm.$refs 获取 DOM 元素 -->
             <el-form class='login_form' :rules='loginFormRules' :model="loginForm" ref="loginFormRef" label-width="0px"><!--label-width 标签的宽度 -->
                 <!-- 用户名 -->
                 <el-form-item label="" prop="username"> <!-- label="用户名" -->
@@ -15,10 +16,11 @@
                         v-model="loginForm.username" placeholder="请输入用户名"></el-input>
                 </el-form-item>
                 <!-- 密码 -->
-                <el-form-item label="" prop="password"> <!-- label="密码" -->
+                <el-form-item label="" prop="password"> <!-- label="密码" prop="password"添加密码框--> 
                     <el-input prefix-icon="iconfont icon-3702mima" 
                         v-model="loginForm.password" placeholder="请输入密码" show-password></el-input>
                 </el-form-item>
+                
                 <!-- 按钮区域 -->
                 <el-form-item class="btns" @keyup.enter="login('loginFormRef')"> <!-- 按钮 -->
                     <el-button type="primary"  @click="login('loginFormRef')">登录</el-button>
@@ -62,10 +64,10 @@ export default {
                 //发起axios请求
                 //通过axios发起post请求，axios.post('',)
                 const { data:result } = await this.$http.post('login', this.loginForm);
-                console.log(result.data.token);
+                console.log(result);
                 if(result.meta.status !== 200){
                    this.$message({
-                        message: '登录失败，请求确认用户名或密码',
+                        message: result.meta.msg,
                         type: 'warning'
                     });
                     return console.log('登录失败');
@@ -99,7 +101,8 @@ export default {
 <style lang="less" scoped>
     //scoped控制组件样式生效区间，声明scoped只在当前组件中样式生效
     .login_container{
-        background-color: #2b4b6b;
+        // background-color: #2b4b6b;
+        background: linear-gradient(to right, #155caa 0%, #2989d8 20%, #2b9f4a 40%, #f38025 60%, #e31a50 80%, #6b2a7e 100%);
         height: 100%;
     }
     //登录框样式
