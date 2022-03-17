@@ -2,13 +2,12 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Login from '../components/Login.vue'
 import Home from '../components/Home.vue'
-import Test from '../components/Test.vue'
 import Welcome from '../components/Welcome.vue'
 //用户管理
 import Users from '../components/user/Users.vue'
 //权限管理
-import Roles from '../components/home/Roles.vue'
-import Rights from '../components/home/Rights.vue'
+import Roles from '../components/power/Roles.vue'
+import Rights from '../components/power/Rights.vue'
 //商品管理
 import Goods from '../components/home/Goods.vue'
 import Params from '../components/home/Params.vue'
@@ -42,8 +41,6 @@ const routes = [
       { path: '/reports',component: Reports},
     ]
   },
-  
-  { path: '/test',component: Test},
 ]
 
 const router = new VueRouter({

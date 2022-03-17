@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import { Button,Form,FormItem,Input,Message,Container,Header,Aside,Main,
     Menu,Submenu,MenuItemGroup,MenuItem,Breadcrumb,BreadcrumbItem,Card,Row,Col,Table,TableColumn,Switch,
-    Tooltip,Pagination,Dialog,MessageBox
+    Tooltip,Pagination,Dialog,MessageBox,Tag,Tree,Select,Option
 } from 'element-ui'
 /* import { Button,} from 'element-ui'
 import {Form,FormItem} from 'element-ui'
@@ -41,6 +41,10 @@ Vue.use(Switch)
 Vue.use(Tooltip)
 Vue.use(Pagination)
 Vue.use(Dialog)
-//el中单框组件 MessageBox不需要注册
+Vue.use(Tag)
+Vue.use(Tree)
+Vue.use(Select)
+Vue.use(Option)
 Vue.prototype.$message = Message
+//el中单框组件 MessageBox不需要注册
 Vue.prototype.$confirm = MessageBox.confirm //挂在一个消息提示函数

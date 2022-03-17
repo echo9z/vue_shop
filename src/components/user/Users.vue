@@ -30,13 +30,13 @@
             <el-table
                 :data="userList"
                 style="width: 100%"  stripe><!--data用于绑定显示数据，类为数组形式 stripe条纹效果 -->
-                <el-table-column type="index" ></el-table-column><!-- 每行的序号 type="index" -->
+                <el-table-column type="index" width='70px'></el-table-column><!-- 每行的序号 type="index" -->
                 <el-table-column prop="username" label="姓名"></el-table-column>
                 <el-table-column prop="email" label="邮箱"></el-table-column>
                 <el-table-column prop="mobile" label="电话"></el-table-column>
                 <el-table-column prop="role_name" label="角色"></el-table-column>
                 <el-table-column label="状态" width='120px'> <!-- 作用域插槽会覆盖 prop="mg_state"属性，就不需要prop属性 -->
-                    <!-- 作用域插槽，子组件中的 slot标签会给scope定义一个 .row属性 -->
+                    <!-- 作用域插槽，子组件中的 slot标签会给scope定义一个.row属性，子组件中绑定row属性<slot v-bind:row='item'></slot>   -->
                     <template v-slot="scope">
                         <!-- switch状态开关 v-model绑定属性true或false
                                 使用switch组件中change事件，当switch状态发送改变时 -->
@@ -54,7 +54,7 @@
                         <!-- 分配角色 --> 
                         <el-tooltip effect="dark" content="分配角色" placement="top-start" :enterable="false" >
                             <!-- enterable鼠标进入提示信息，信息隐藏 -->
-                            <el-button type="warning" icon="el-icon-setting" size="small"></el-button>
+                            <el-button type="warning" icon="el-icon-setting" size="small" @click="showSetRoleDialog(scope.row)"></el-button>
                         </el-tooltip>
                         <!-- {{scope.row.id}} -->
                     </template>
@@ -78,15 +78,12 @@
                         <el-input v-model="addUserForm.username" autocomplete="off"></el-input>
                     </el-form-item>
                     <el-form-item label="密码" prop="password">
-                        <!-- autocomplete 原生属性，自动补全 -->
                         <el-input v-model="addUserForm.password" autocomplete="off" show-password></el-input>
                     </el-form-item>
                     <el-form-item label="邮箱" prop="email">
-                        <!-- autocomplete 原生属性，自动补全 -->
                         <el-input v-model="addUserForm.email" autocomplete="off" ></el-input>
                     </el-form-item>
                     <el-form-item label="手机" prop="mobile">
-                        <!-- autocomplete 原生属性，自动补全 -->
                         <el-input v-model="addUserForm.mobile" autocomplete="off" ></el-input>
                     </el-form-item>
                 </el-form>
@@ -102,7 +99,7 @@
                 title="修改用户"
                 :visible.sync="editDialogVisible"
                 width="45%"
-                @close="editDialogClose" >
+                @close="editDialogClose" destroy-on-close >
                 <!-- 内容主体区域 添加用户表单-->
                 <el-form :model="editUserForm" :rules="editRules" ref="editRulesRef" label-width="70px" >
                     <el-form-item label="用户名">
@@ -125,12 +122,34 @@
                 </span>
             </el-dialog>
 
+            <!-- 分配角色对话框 -->
+            <el-dialog
+                title="分配角色"
+                :visible.sync="setRoleDialogVisible"
+                width="45%"
+                @close="roleDialogClose" destroy-on-close >
+                <div>
+                    <p>当前的用户：{{userInfo.username}}</p>
+                    <p>当前的角色：{{userInfo.role_name}}</p>
+                </div>
+                <div>
+                    分配新角色：
+                    <el-select v-model="selectRoleId" slot="prepend" placeholder="请选择">
+                        <el-option :label="item.roleName" :value="item.id" v-for="item in rolesList" :key="item.id"></el-option>
+                    </el-select>
+                </div>
+                <span slot="footer" class="dialog-footer">
+                    <el-button @click="setRoleDialogVisible = false">取 消</el-button>
+                    <el-button type="primary" @click="setRoleInfo">确 定</el-button>
+                </span>
+            </el-dialog>
+
             <!-- 分页组件 -->
             <!-- current-page当前选中页码值
                 page-sizes当前页显示条数的限制
                 page-size当前页需要显示多少条数据
                 layout需要组件展示的功能 -->
-              <el-pagination
+            <el-pagination
                 @size-change="handleSizeChange"
                 @current-change="handleCurrentChange"
                 :current-page="queryInfo.pagenum"
@@ -172,7 +191,6 @@ export default {
         }
         
         return {
-            search:'',
             //获取用户列表的参数对象
             queryInfo:{
                 query:'', //查询参数，可null
@@ -220,7 +238,12 @@ export default {
                     { required: true, message: '请输入手机', trigger: 'blur' },
                     { validator: checkMobile, trigger: 'blur' },
                 ],
-            }
+            },
+
+            setRoleDialogVisible:false, //控制分配角色对话框
+            userInfo:{}, //需要分配用户的角色信息；当用户点击分配角色，将row数据复制改属性，共分配对话框使用
+            rolesList:[], //存放所有角色列表
+            selectRoleId:'', //选中的角色的value中
         }
     },
     created(){
@@ -376,6 +399,28 @@ export default {
                 this.$message.success('删除用户成功!');
                 this.getUserList(); //重新渲染用户数据列表
             }
+        },
+        async showSetRoleDialog(rowObj){ //点击分配角色 显示分配角色对话框
+            this.userInfo = rowObj;
+            //加载角色列表
+            const {data:res} = await this.$http.get('roles');
+            if(res.meta.status !== 200) return this.$message.error('获取角色列表失败')
+            this.rolesList = res.data;
+            this.setRoleDialogVisible = true
+        },
+        roleDialogClose(){ //监听分配角色对话框退出事件，重置数据
+            this.rolesList = [];
+            this.userInfo = {}
+            this.selectRoleId = '';
+            console.log('关闭了');
+        },
+        async setRoleInfo(){ //点击确定 给用户添加角色
+            console.log(this.userId, this.selectRoleId);
+            const {data:res} = await this.$http.put(`users/${this.userInfo.id}/role`,{rid:this.selectRoleId});
+            if(res.meta.status !== 200) return this.$message.error('设置角色失败')
+            this.$message.success('设置角色成功');
+            this.getUserList();
+            this.setRoleDialogVisible = false
         }
         
     }

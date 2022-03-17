@@ -3,6 +3,7 @@ html, body, #app{
     height: 100%;
     margin: 0;
     padding: 0;
+    min-width: 1366px;/* 整个页面的最小宽度为1366 */
 }
 
 .el-breadcrumb{
