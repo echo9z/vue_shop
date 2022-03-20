@@ -2,6 +2,8 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router/index.js'
 import './plugins/element.js'
+import './plugins/vue-table-with-tree-grid.js'
+
 //入口文件
 import './assets/css/global.css' //全局样式表
 import './assets/fonts/iconfont.css'//图标字体
@@ -18,7 +20,6 @@ axios.interceptors.request.use(function (config) {
   // 对请求错误做些什么
   return Promise.reject(error);
 });
-
 
 
 Vue.config.productionTip = false

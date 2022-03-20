@@ -9,9 +9,9 @@ import Users from '../components/user/Users.vue'
 import Roles from '../components/power/Roles.vue'
 import Rights from '../components/power/Rights.vue'
 //商品管理
-import Goods from '../components/home/Goods.vue'
-import Params from '../components/home/Params.vue'
-import Categories from '../components/home/Categories.vue'
+import Goods from '../components/goods/Goods.vue'
+import Params from '../components/goods/Params.vue'
+import Categories from '../components/goods/Categories.vue'
 //
 import Orders from '../components/home/Orders.vue'
 import Reports from '../components/home/Reports.vue'
