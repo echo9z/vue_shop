@@ -19,7 +19,7 @@
             <!-- 角色列表 -->
             <el-table
                 :data="rolesList"
-                style="width: 100%" type="expand"  stripe>
+                style="width: 100%" type="expand" stripe>
                 <!-- 展开列 设置 type="expand" 和 v-slot='props' 可以开启展开行功能 -->
                 <el-table-column type="expand"  >
                     <!-- 作用域插槽 -->
