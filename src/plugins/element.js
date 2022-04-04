@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import { Button,Form,FormItem,Input,Message,Container,Header,Aside,Main,
     Menu,Submenu,MenuItemGroup,MenuItem,Breadcrumb,BreadcrumbItem,Card,Row,Col,Table,TableColumn,Switch,
-    Tooltip,Pagination,Dialog,MessageBox,Tag,Tree,Select,Option,Cascader,Alert,Tabs,TabPane
+    Tooltip,Pagination,Dialog,MessageBox,Tag,Tree,Select,Option,Cascader,Alert,Tabs,TabPane,Steps,Step,
+    Checkbox,CheckboxGroup,Upload
 } from 'element-ui'
 /* import { Button,} from 'element-ui'
 import {Form,FormItem} from 'element-ui'
@@ -49,6 +50,11 @@ Vue.use(Cascader)
 Vue.use(Alert)
 Vue.use(Tabs)
 Vue.use(TabPane)
+Vue.use(Steps)
+Vue.use(Step)
+Vue.use(CheckboxGroup)
+Vue.use(Checkbox)
+Vue.use(Upload)
 
 Vue.prototype.$message = Message
 //el中单框组件 MessageBox不需要注册

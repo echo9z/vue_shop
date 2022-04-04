@@ -6,20 +6,31 @@ html, body, #app{
     min-width: 1366px;/* 整个页面的最小宽度为1366 */
 }
 
-.el-breadcrumb{
+.el-breadcrumb{ /* 面包导航 */
     margin-bottom: 20px;
 }
-.el-card{
+.el-card{ /* 卡片组件 */
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15)!important;
 }
-.el-table {
+.el-table { /* 表格组件 */
     margin-top: 15px;
 }
-.el-pagination{
+.el-pagination{ 
     margin-top: 20px;
     margin-left: 30px;
 }
+/* 级联组件样式 */
 .el-cascader-panel {
     height: 300px;
 }
-
+/* 步骤组件 */
+.el-steps{
+    margin: 35px 0;
+}
+.el-step__title{ /* 步骤组件标题文字大小 */
+    font-size: 12px;
+}
+/* 富文本编辑器 */
+.ql-editor{
+    min-height: 300px;
+}

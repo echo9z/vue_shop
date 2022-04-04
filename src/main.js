@@ -2,7 +2,9 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router/index.js'
 import './plugins/element.js'
-import './plugins/vue-table-with-tree-grid.js'
+import './plugins/vue-table-with-tree-grid.js' //vue-table网格组件
+import './plugins/filter' //过滤器组件
+import './plugins/vue-quill-editor' //富文本编辑组件
 
 //入口文件
 import './assets/css/global.css' //全局样式表

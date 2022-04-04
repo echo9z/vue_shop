@@ -9,7 +9,8 @@ import Users from '../components/user/Users.vue'
 import Roles from '../components/power/Roles.vue'
 import Rights from '../components/power/Rights.vue'
 //商品管理
-import Goods from '../components/goods/Goods.vue'
+import Goods from '../components/goods/List.vue'
+import AddGoods from '../components/goods/AddGoods.vue'
 import Params from '../components/goods/Params.vue'
 import Categories from '../components/goods/Categories.vue'
 //
@@ -33,12 +34,14 @@ const routes = [
       { path: '/roles',component: Roles},
       { path: '/rights',component: Rights},
       //商品管理
-      { path: '/goods',component: Goods},
-      { path: '/params',component: Params},
+      { path: '/goods',component: Goods,},
+      { path: '/goods/add',component: AddGoods},
+      { path: '/params',component: Params },
       { path: '/categories',component: Categories},
-
+      
       { path: '/orders',component: Orders},
       { path: '/reports',component: Reports},
+      
     ]
   },
 ]

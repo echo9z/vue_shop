@@ -401,7 +401,7 @@ export default {
                 row.attr_vals.splice(index,1);
                 // console.log(row.attr_vals.join(' '));
                 //确认删除，发起删除请求
-               this.saveAttrVal(row)
+                this.saveAttrVal(row)
             }
             console.log('关闭');
         },

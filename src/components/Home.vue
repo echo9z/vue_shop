@@ -38,7 +38,7 @@
                         <!-- 二级菜单模版区域 -->
                         <!-- index='order' 访问地址 http://127.0.0.1/#/order 
                             @click="saveMenuState(subItem.path) 记录用户点击菜单，存储到会话存储中-->
-                        <el-menu-item :index="subItem.path" v-for="subItem in item.children" :key="subItem.id" @click="saveMenuState(subItem.path)">
+                        <el-menu-item :index="'/'+subItem.path" v-for="subItem in item.children" :key="subItem.id" @click="saveMenuState('/'+subItem.path)">
                             <template slot="title"><!-- 一级菜单模版区域 -->
                                 <i class="el-icon-menu"></i><!-- 图标 -->
                                 <span>{{subItem.authName}}</span><!-- 文本 -->
@@ -82,12 +82,6 @@
 
 <script>
 export default {
-    created(){//vue实例创建完成后被立即同步调用，已被配置完毕：数据侦听、计算属性、方法、事件/侦听器的回调函数
-        //挂载阶段还没开始，且 $el property 目前尚不可用。
-        this.getMenuList();
-        //当前页面刷新时，将设sessionStorage中点击菜单点击状态，赋值给activePath激活路径，值一改变也会改变default-active值进行菜单激活
-        this.activePath = window.sessionStorage.getItem('activePath')
-    },
     data(){
         return {
             //左侧菜单数据
@@ -103,6 +97,12 @@ export default {
             isCollapse:false, //默认左侧菜单不折叠
             activePath:'', //默认为空，用于记录用户点击的那个菜单的路径，将值赋值给default-active
         }
+    },
+    created(){//vue实例创建完成后被立即同步调用，已被配置完毕：数据侦听、计算属性、方法、事件/侦听器的回调函数
+        //挂载阶段还没开始，且 $el property 目前尚不可用。
+        this.getMenuList();
+        //当前页面刷新时，将设sessionStorage中点击菜单点击状态，赋值给activePath激活路径，值一改变也会改变default-active值进行菜单激活
+        this.activePath = window.sessionStorage.getItem('activePath')
     },
     methods:{
         //退出首页
@@ -125,6 +125,8 @@ export default {
         },
         //保存链接的激活状态
         saveMenuState(path){ //用户点击菜单是记录用户点击url记录到，与default-active:当前激活菜单的 index值相对于
+            console.log(path);
+            console.log(this.$route.path);
             window.sessionStorage.setItem('activePath',path);
             this.activePath = path;
         }
