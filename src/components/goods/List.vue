@@ -209,7 +209,7 @@ export default {
             const {data:res} = await this.$http.get('goods',{
                 params:this.queryInfo
             });
-            if(res.meta.status !==200)return res
+            if(res.meta.status !==200)return this.$message.error('获取商品列表失败')
             console.log(res);
             this.goodList = res.data.goods;
             this.total = res.data.total;

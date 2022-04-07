@@ -14,7 +14,7 @@ import AddGoods from '../components/goods/AddGoods.vue'
 import Params from '../components/goods/Params.vue'
 import Categories from '../components/goods/Categories.vue'
 //
-import Orders from '../components/home/Orders.vue'
+import Orders from '../components/order/Orders.vue'
 import Reports from '../components/home/Reports.vue'
 
 //路由文件
@@ -38,7 +38,7 @@ const routes = [
       { path: '/goods/add',component: AddGoods},
       { path: '/params',component: Params },
       { path: '/categories',component: Categories},
-      
+      //商品订单
       { path: '/orders',component: Orders},
       { path: '/reports',component: Reports},
       
