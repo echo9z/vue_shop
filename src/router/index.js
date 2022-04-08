@@ -15,7 +15,7 @@ import Params from '../components/goods/Params.vue'
 import Categories from '../components/goods/Categories.vue'
 //
 import Orders from '../components/order/Orders.vue'
-import Reports from '../components/home/Reports.vue'
+import Reports from '../components/report/Reports.vue'
 
 //路由文件
 Vue.use(VueRouter)

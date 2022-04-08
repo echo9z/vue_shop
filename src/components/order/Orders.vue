@@ -123,7 +123,7 @@
             @close="progressDialogClose" destroy-on-close :close-on-click-modal='false'>
             <!-- 物流主体信息 -->
             <!-- 时间线 -->
-            <el-timeline :reverse="reverse">
+            <el-timeline :reverse="true">
                 <el-timeline-item
                     v-for="(activity, index) in progressInfo"
                     :key="index"
