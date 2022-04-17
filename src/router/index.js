@@ -1,21 +1,38 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Login from '../components/Login.vue'
-import Home from '../components/Home.vue'
-import Welcome from '../components/Welcome.vue'
+
+// import Login from '../components/Login.vue'
+// import Home from '../components/Home.vue'
+// import Welcome from '../components/Welcome.vue'
+const Login = () => import(/* webpackChunkName: "login_home_welcome" */ '../components/Login.vue')
+const Home = () => import(/* webpackChunkName: "login_home_welcome" */ '../components/Home.vue')
+const Welcome = () => import(/* webpackChunkName: "login_home_welcome" */ '../components/Welcome.vue')
+
 //用户管理
-import Users from '../components/user/Users.vue'
+// import Users from '../components/user/Users.vue'
+const Users = () => import(/* webpackChunkName: "user_roles_rights" */ '../components/user/Users.vue')
 //权限管理
-import Roles from '../components/power/Roles.vue'
-import Rights from '../components/power/Rights.vue'
+// import Roles from '../components/power/Roles.vue'
+// import Rights from '../components/power/Rights.vue'
+const Roles = () => import(/* webpackChunkName: "user_roles_rights" */ '../components/power/Roles.vue')
+const Rights = () => import(/* webpackChunkName: "user_roles_rights" */ '../components/power/Rights.vue')
+
 //商品管理
-import Goods from '../components/goods/List.vue'
-import AddGoods from '../components/goods/AddGoods.vue'
-import Params from '../components/goods/Params.vue'
-import Categories from '../components/goods/Categories.vue'
-//
-import Orders from '../components/order/Orders.vue'
-import Reports from '../components/report/Reports.vue'
+// import Goods from '../components/goods/List.vue' //商品列表
+// import AddGoods from '../components/goods/AddGoods.vue' //添加商品
+const Goods = () => import(/* webpackChunkName: "goodList_addGood" */ '../components/goods/List.vue')
+const AddGoods = () => import(/* webpackChunkName: "goodList_addGood" */ '../components/goods/AddGoods.vue')
+
+
+// import Params from '../components/goods/Params.vue' //商品参数
+// import Categories from '../components/goods/Categories.vue' //商品分组
+const Params = () => import(/* webpackChunkName: "params_categories" */ '../components/goods/Params.vue')
+const Categories = () => import(/* webpackChunkName: "params_categories" */ '../components/goods/Categories.vue')
+
+// import Orders from '../components/order/Orders.vue'
+// import Reports from '../components/report/Reports.vue'
+const Orders = () => import(/* webpackChunkName: "order_report" */ '../components/order/Orders.vue')
+const Reports = () => import(/* webpackChunkName: "order_report" */ '../components/report/Reports.vue')
 
 //路由文件
 Vue.use(VueRouter)

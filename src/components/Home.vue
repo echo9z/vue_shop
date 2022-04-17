@@ -15,8 +15,9 @@
             <el-aside :width="isCollapse? '64px':'200px'">
                 <div class="toggle-button" @click="toggleCollapse">|||</div><!-- 折叠侧边栏按钮 -->
                 <!-- 菜单栏结构 el-menu 整个左侧，侧边栏的 -->
-                <el-menu background-color="#333744" text-color="#fff" 
-                    active-text-color="#409eff" unique-opened 
+                <!-- <el-menu background-color="#333744" text-color="#fff"  -->
+                <el-menu background-color="rgba(255,255,255,0)" text-color="#fff" 
+                    active-text-color="#fff" unique-opened 
                     :collapse='isCollapse'
                     :collapse-transition='false'
                     :router='true'
@@ -40,7 +41,7 @@
                             @click="saveMenuState(subItem.path) 记录用户点击菜单，存储到会话存储中-->
                         <el-menu-item :index="'/'+subItem.path" v-for="subItem in item.children" :key="subItem.id" @click="saveMenuState('/'+subItem.path)">
                             <template slot="title"><!-- 一级菜单模版区域 -->
-                                <i class="el-icon-menu"></i><!-- 图标 -->
+                                <i class="el-icon-menu" style="color:#fff"></i><!-- 图标 -->
                                 <span>{{subItem.authName}}</span><!-- 文本 -->
                             </template>
                         </el-menu-item>
@@ -165,7 +166,8 @@ export default {
     }
   
     .el-aside { //左侧菜单栏样式
-        background-color: #333744;
+        // background-color: #333744;
+        background: linear-gradient(to top, #155caa 0%, #2989d8 20%, #2b9f4a 40%, #f38025 60%, #e31a50 80%, #6b2a7e 100%);
         color: #fff;
         line-height: 200px;
     }
@@ -186,9 +188,9 @@ export default {
         margin-left: 4px;
     }
     .toggle-button{ //菜单栏按钮
-        background-color: #4a5064;
+        background-color: #eaebef5e;
         font-size: 12px;
-        line-height: 24px;
+        line-height: 30px;
         color: #fff;
         text-align: center;
         letter-spacing: 0.2em; //字体之间的间距

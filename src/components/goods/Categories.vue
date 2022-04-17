@@ -8,8 +8,8 @@
             <el-breadcrumb-item>商品分类</el-breadcrumb-item>
         </el-breadcrumb>
 
-         <!-- 卡片视图 -->
-        <el-card>
+        <!-- 卡片视图 -->
+        <el-card shadow="always">
             <!-- 添加商品分类按钮区域 -->
             <el-row :gutter="20">
                 <el-col >
@@ -108,7 +108,7 @@
             </span>
         </el-dialog>
 
-         <!-- 编辑分类对话框 -->
+        <!-- 编辑分类对话框 -->
         <el-dialog
             title="修改分类"
             :visible.sync="editCateDialogVisible"

@@ -2,7 +2,7 @@ import Vue from 'vue'
 import { Button,Form,FormItem,Input,Message,Container,Header,Aside,Main,
     Menu,Submenu,MenuItemGroup,MenuItem,Breadcrumb,BreadcrumbItem,Card,Row,Col,Table,TableColumn,Switch,
     Tooltip,Pagination,Dialog,MessageBox,Tag,Tree,Select,Option,Cascader,Alert,Tabs,TabPane,Steps,Step,
-    Checkbox,CheckboxGroup,Upload,Timeline,TimelineItem
+    Checkbox,CheckboxGroup,Upload,Timeline,TimelineItem,Calendar
 } from 'element-ui'
 /* import { Button,} from 'element-ui'
 import {Form,FormItem} from 'element-ui'
@@ -57,6 +57,7 @@ Vue.use(Checkbox)
 Vue.use(Upload)
 Vue.use(Timeline)
 Vue.use(TimelineItem)
+Vue.use(Calendar)
 
 Vue.prototype.$message = Message
 //el中单框组件 MessageBox不需要注册
